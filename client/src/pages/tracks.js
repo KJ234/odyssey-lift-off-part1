@@ -35,7 +35,7 @@ const Tracks = () => {
 const {loading, error, data} = useQuery(TRACKS)
 
 
-  return <Layout>
+  return <Layout grid>
     <QueryResult error={error} loading={loading} data={data}>
     {
       data?.tracksForHome?.map((track) => (

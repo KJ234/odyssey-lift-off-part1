@@ -1,13 +1,13 @@
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
-import typeDefs from './schema.js'
 import { addMocksToSchema } from '@graphql-tools/mock'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 
+import typeDefs from './schema.js'
 //server loaded with mocked data,
 const mocks = {
     Query: () => ({
-      tracksForHome: () => [...new Array(6)],
+        tracksForHome: () => [...new Array(6)],
     }),
     Track: () => ({
       id: () => "track_01",
@@ -32,8 +32,8 @@ async function startApolloServer() {
         // With this code, we're generating an executable schema from our typeDefs, and instructing Apollo Server to populate every queried schema field with a placeholder value (such as Hello World for String fields).
         schema: addMocksToSchema({
             schema: makeExecutableSchema({typeDefs }),
+            mocks
         }),
-        mocks
     });
     const { url } = await startStandaloneServer(server);
     console.log(`
